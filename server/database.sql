@@ -1,4 +1,4 @@
-CREATE DATABASE pern_todo-list;
+CREATE DATABASE pern_todo_list;
     CREATE TABLE users(
 
     );
