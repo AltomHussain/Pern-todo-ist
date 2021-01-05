@@ -63,16 +63,22 @@ app.put("/todo/:id", async (req, res) => {
 });
 
 //Delete todo
-app.delete("/todo/:id", async(req, res)=>{
-    try {
-        const {id} = req.params;
-     const deleteTodo = await pool.query("delete from todo_list where todo_id = $1", [id]);
-     res.json()
-        
-    } catch (error) {
-        res.status(500).json(error.message)
+app.delete("/todo/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const deleteTodo = await pool.query(
+      "delete from todo_list where todo_id = $1 returning *",
+      [id]
+    );
+    if (deleteTodo.rows.length !== 0) {
+      res.json(`Row with id: ${id} has been deleted successfully`);
+    } else {
+      res.json("There is no item to delete");
     }
-})
+  } catch (error) {
+    res.status(500).json(error.message);
+  }
+});
 app.listen(5000, () => {
   console.log("Server is listening on port 5000");
 });
