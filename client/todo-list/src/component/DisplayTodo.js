@@ -13,8 +13,9 @@ export default function DisplayTodo() {
   useEffect(() => {
     getTodos();
   }, []);
+
+  //Delete function
   const  deleteTodo = async(id)=> {
-      
      try {
          fetch(`http://localhost:5000/todo/${id}`, {
              method: "DELETE",
