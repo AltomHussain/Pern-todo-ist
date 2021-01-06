@@ -1,38 +1,43 @@
 import React, { useState } from "react";
 
 export default function InputTodo() {
-  const [input, setInput] = useState("");
-  const handleChange = (e) => {
-    console.log(input);
-    setInput(e.target.value)
-  };
-const handleSubmit = async(e)=>{
-e.preventDefault();
-try {
-    const text = {input};
-    await fetch("http")
-    
-} catch (error) {
-    console.log(error.message);
-}
+  const [description, setDescription] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if(description !== ""){
+        console.log(true);
+    try {
+      const body = { description };
+      await fetch("http://localhost:5000/todo", {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        //You can do this line
+        // body: JSON.stringify({"description": description})
+        //or
+        body: JSON.stringify(body),
+      });
+      window.location = "/";
+      
+    } catch (error) {
+        console.log(error.message);
+    }
 }
+  };
 
 
   return (
-    <div>
-      <label for="exampleInputEmail1" className="text-center my-4">Email address</label>
-      <form className="d-flex mt-3" onSubmit={handleSubmit}>
+    <div className="input-container">
+      <h1>List of todos</h1>
+      <form className="d-flex mt-3">
         <input
-          type="email"
-          class="form-control"
-          id="exampleInputEmail1"
-          aria-describedby="emailHelp"
-          placeholder="Enter email"
-          value={input}
-          onChange={handleChange}
+          type="text"
+          className="form-control"
+          placeholder="Enter todo here"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="button" class="btn btn-success">
+        <button onClick={handleSubmit} type="button" class="btn btn-success">
           Add
         </button>
       </form>
