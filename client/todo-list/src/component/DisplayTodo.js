@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import EditTodo from "./EditTodo";
 
 export default function DisplayTodo() {
   const [allTodos, setAllTodos] = useState([]);
@@ -42,9 +43,10 @@ export default function DisplayTodo() {
               <tr key={index}>
                 <td>{todo.description}</td>
                 <td>
-                  <button type="button" class="btn btn-warning">
+                  <EditTodo todo={todo}/>
+                  {/* <button type="button" class="btn btn-warning">
                     Edit
-                  </button>
+                  </button> */}
                 </td>
                 <td>
                   <button
