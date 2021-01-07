@@ -51,7 +51,7 @@ export default function EditTodo({todo}) {
                 >
                 Edit
               </button>
-              <button type="button" class="btn btn-danger" data-dismiss="modal">
+              <button type="button" class="btn btn-danger" data-dismiss="modal" onClick={()=>setDescription(todo.description)}>
                 Close
               </button>
             </div>
