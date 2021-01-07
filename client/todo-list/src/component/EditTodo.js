@@ -28,7 +28,7 @@ export default function EditTodo({todo}) {
         Edit
       </button>
 
-      <div class="modal" id={`id${todo.todo_id}`}>
+      <div class="modal" id={`id${todo.todo_id}`} onClick={()=>setDescription(todo.description)}>
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
