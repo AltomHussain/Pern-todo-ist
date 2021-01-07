@@ -33,8 +33,8 @@ export default function EditTodo({todo}) {
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">Edit Todo</h4>
-              <button type="button" class="close" data-dismiss="modal">
-                &times;
+              <button type="button" class="close" data-dismiss="modal" onClick={()=>setDescription(todo.description)}>
+                &times; 
               </button>
             </div>
 
